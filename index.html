@@ -1,0 +1,485 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/style.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> 
+</head>
+<body class="bg-white">
+    <nav class="bg-white" x-data="{ open: false }">
+        <div class="max-w-6xl max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#">
+                        <img class="h-10 w-auto" src="/Vector.png" alt="Company Logo">
+                    </a>
+                </div>
+
+                <!-- Menu untuk Desktop -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                <div class="relative group inline-block">
+
+                    <div class="absolute inset-0 bg-black rounded-[33px]  translate-x-0 translate-y-1 transition-transform duration-150 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0"></div>
+                    <a href="#"  class=" relative inline-flex items-center gap-x-2.5 px-4 py-2 bg-[#34d399]  border-2 border-black rounded-[33px]  font-['SF_Pro_Display'] font-semibold text-black  transition-transform duration-150 ease-in-out group-hover:-translate-x-0 group-hover:-translate-y-1">
+                
+                        <svg class="w-4 h-4" fill="none"  stroke="currentColor"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+
+                        <!-- Teks Tombol -->
+                        <span>Home</span>
+                    </a>    
+                </div>
+                    <a href="#" class="font-['SF_Pro_Display'] text-black-400 hover:text-gray-900 font-regular">About</a>
+                    <a href="#" class="font-['SF_Pro_Display'] text-black-400 hover:text-gray-900 font-regular">Service</a>
+                    <a href="#" class="font-['SF_Pro_Display'] text-black-400 hover:text-gray-900 font-regular">Our Works</a>
+                    <a href="#" class="font-['SF_Pro_Display'] text-black-400 hover:text-gray-900 font-regular">Resources</a>
+                    <a href="#" class="font-['SF_Pro_Display'] text-black-400 hover:text-gray-900 font-regular">Blog</a>
+                    <a href="#" class="font-['SF_Pro_Display'] text-black-400 hover:text-gray-900 font-regular">Support</a>
+                </div>
+
+                <!-- Ikon dan Tombol Kanan -->
+                <div class="hidden md:flex items-center space-x-4">
+                     <button class="text-gray-600 hover:text-gray-900">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <a href="#" class="bg-gray-100 text-gray-800 px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:bg-gray-200 flex items-center">
+                        Get in touch
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+
+                <!-- Tombol Hamburger untuk Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 focus:outline-none">                        <span class="sr-only">Open main menu</span>
+                        <svg :class="{'hidden': open, 'block': !open }" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <svg :class="{'block': open, 'hidden': !open }" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+         <div x-show="open" class="md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="bg-teal-400 text-black block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">About</a>
+                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Service</a>
+                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Our Works</a>
+                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Resources</a>
+                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Blog</a>
+                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Support</a>
+                 <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between px-2">
+                    <button class="text-gray-600 hover:text-gray-900">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <a href="#" class="bg-gray-100 text-gray-800 px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:bg-gray-200 flex items-center">
+                        Get in touch
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BAGIAN UTAMA (HERO SECTION) -->
+    <main class="relative overflow-hidden">
+    <div class="container max-w-6xl mx-auto px-8 py-16 md:py-24 relative">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="/hero.png" alt="background logo" class="absolute -right-25 top-30 w-1/2 max-w-2xl ">
+        </div>
+            <div class="relative z-10 lg:w-1/2">
+                <!-- Judul Utama -->
+                <h1 class="text-4xl md:text-6xl lg:text-8xl tracking-tighter leading-tight">
+                    <span class="text-gray-400 font-regular">Your Digital</span><br>
+                    <span class="text-gray-900 font-semibold">Excellence<br>Begins Here</span>
+                </h1>
+                <p class="mt-6 text-base text-gray-500 max-w-md">
+                   The Mangcoding team will help build a website for your company with quality and guaranteed services, withcustom templates you can create a website as you like.
+                </p>
+
+                <!-- Tombol View More -->
+                <div class="mt-8">
+                    <a href="#" class="inline-flex items-center px-6 py-3 border border-black-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-100 shadow-sm">
+                        View More
+                     <img src="/pan.png" alt="Panah kanan" class="w-8 h-8 ">                
+                    </a>
+                </div>
+            </div>
+
+            <!-- BAGIAN STATISTIK -->
+            <div class="relative z-10 mt-12 md:mt-10">
+                 <div class="grid grid-cols-2 gap-y-10 gap-x-1 text-center md:grid-cols-4">                    <!-- Stat 1 -->
+                    <div class="md:border-r md:border-gray-200">
+                        <p class="text-5xl font-medium text-['Clash_Grotesk']">18+</p>
+                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Satisfied Client</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="md:border-r md:border-gray-200">
+                        <p class="text-5xl font-medium text-['Clash_Grotesk']">26+</p>
+                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Project</p>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="md:border-r md:border-gray-200">
+                        <p class="text-5xl font-medium text-['Clash_Grotesk']">3+</p>
+                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Years</p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div>
+                        <p class="text-5xl font-medium text-['Clash_Grotesk']">10+</p>
+                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Countries</p>
+                    </div>
+                </div>
+            </div>
+
+        </div> 
+
+        <!-- BAGIAN LOGO KLIEN -->
+        <div class="container max-w-6xl mx-auto px-6 pb-20">
+            <div class="relative z-10 bg-white border border-black-300 rounded-3xl p-6 shadow-xl shadow-black-200/70">
+                <div class="flex flex-wrap items-center justify-around gap-x-4 gap-y-8">
+                    <img class="h-10 w-auto" src="/lenovo.png" alt="Lenovo">
+                    <img class="h-8 w-auto" src="/rata.png" alt="Rata">
+                    <img class="h-8 w-auto" src="/ceria.png" alt="CorlKid">
+                    <img class="h-10 w-auto" src="/intel.png" alt="Intel">
+                    <img class="h-8 w-auto" src="/nvidia.png" alt="Nvidia">
+                    <img class="h-7 w-auto" src="/micro.png" alt="Microsoft">
+                    <img class="h-8 w-auto" src="/deep.png" alt="Deepseek">
+                </div>
+            </div>
+        </div>
+    </main>
+
+<section class="bg-white py-10 sm:py-10">
+    <div class="container max-w-6xl mx-auto px-4">
+
+        <!-- Judul Utama -->
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl text-gray-500 font-heading">
+                Just give the idea and
+            </h2>
+            <p class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 font-heading">
+                we will make it come true
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+
+            <!-- Kartu 1: Shopify -->
+            <div class="relative">
+                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
+                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Shopify Theme <br> Development</h3>
+                        <img src="/1.png" alt="Shopify Icon" class="h-10 w-10 flex-shrink-0">
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed font-body">
+                        Shopify theme development is the process of creating, customizing, and optimizing the User Interface (UI) and User Experience (UX) of an online store. PT Anugrah Sinar Digital (mangcoding) offers professional and high-quality Shopify theme development services.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu 2: WordPress -->
+            <div class="relative">
+                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
+                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 font-heading">WordPress theme <br> Development</h3>
+                        <img src="/1.png" alt="WordPress Icon" class="h-10 w-10 flex-shrink-0">
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed font-body">
+                        WordPress theme development is the process of creating, customizing, and optimizing User Interface (UI) for websites built on the WordPress platform. PT Anugrah Sinar Digital (mangcoding) provides professional and high-quality WordPress theme development services.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Kartu 3: Custom Plugin -->
+            <div class="relative">
+                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
+                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Custom Plugin / <br> Custom App</h3>
+                        <img src="/2.png" alt="Plugin Icon" class="h-10 w-10 flex-shrink-0">
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed font-body">
+                        Custom Plugin or Custom App is a customized software solution designed to meet the unique needs of a particular platform or system, such as WordPress or Shopify. PT Anugrah Sinar Digital (mangcoding) provides high-quality custom plugin and custom app development services that meet your business specifications.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu 4: Web Application -->
+            <div class="relative">
+                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
+                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Web Application <br> Development</h3>
+                        <img src="/3.png" alt="Web App Icon" class="h-10 w-10 flex-shrink-0">
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed font-body">
+                        Web Application Development is the process of building a software program that runs on a web server and can be accessed through a web browser. PT Anugrah Sinar Digital (mangcoding) provides experienced and expert web application development services to meet the needs of various types of businesses.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kartu 5: Logos and Branding -->
+            <div class="relative">
+                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
+                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Logos and <br> Branding</h3>
+                        <img src="/4.png" alt="Branding Icon" class="h-10 w-10 flex-shrink-0">
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed font-body">
+                        Logo and branding are two concepts that are often considered the same, even though they have different roles. A logo is a symbol that represents a company, which is a brand of company, while branding is a broader process of building and managing the image of a brand.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Kartu 6: UI/UX -->
+            <div class="relative">
+                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
+                <div class="relative bg-teal-500 text-white p-8 border-2 border-gray-900 rounded-3xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold font-heading">User Interface & User <br> Experience Design</h3>
+                        <img src="/5.png" alt="UI/UX Icon" class="h-10 w-10 flex-shrink-0">
+                    </div>
+                    <p class="text-teal-100 text-sm leading-relaxed font-body">
+                        User Interface (UI) and User Experience (UX) design are key in creating that a digital product or service provides a positive and relevant experience to its users. PT Anugrah Sinar Digital (mangcoding) provides UI/UX design services that focus on creating good interactions between users and digital products.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="py-3">
+    <div class="relative mx-auto h-px max-w-6xl bg-gray-200">
+        <div class="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-gray-400 to-transparent"></div>
+    </div>
+</div>
+
+<section class="bg-white-50 py-8 sm:py-24 flex items-center justify-center">
+    <div class="w-full max-w-6xl mx-auto px-4">
+        <div x-data="{ activeItem: 2 }" class="relative space-y-[-24px]">
+
+            <!-- Item 1: App AyahHebat -->
+            <div
+                @click="activeItem = 1"
+                class="relative p-8 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                :class="{
+                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/50': activeItem === 1,
+                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 1}">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-semibold">App AyahHebat</h3>
+                    <!-- Ikon hanya muncul saat item aktif -->
+                    <div x-show="activeItem === 1" x-transition class="bg-white rounded-full p-2">
+                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Orely.co (Aktif secara default) -->
+            <div
+                @click="activeItem = 2"
+                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                :class="{
+                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 2,
+                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 2}">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold">Orely.co</h3>
+                        <p class="text-sm text-emerald-100 mt-1">Development</p>
+                    </div>
+                    <!-- Ikon selalu terlihat di item aktif -->
+                    <div class="bg-white rounded-full p-3 shadow-inner">
+                        <svg class="w-6 h-6 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Mezo Logo -->
+            <div
+                @click="activeItem = 3"
+                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                :class="{
+                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 3,
+                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 3}">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-semibold">Mezo Logo</h3>
+                    <div x-show="activeItem === 3" x-transition class="bg-white rounded-full p-2">
+                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: Pakubumi Semesta -->
+            <div
+                @click="activeItem = 4"
+                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                :class="{
+                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 4,
+                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 4}">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-semibold">Pakubumi Semesta</h3>
+                    <div x-show="activeItem === 4" x-transition class="bg-white rounded-full p-2">
+                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5: Daiichi -->
+            <div
+                @click="activeItem = 5"
+                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                :class="{
+                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 5,
+                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 5}">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold">Daiichi</h3>
+                        <p class="text-sm" :class="{'text-emerald-100': activeItem === 5, 'text-gray-400': activeItem !== 5}">Development</p>
+                    </div>
+                    <div x-show="activeItem === 5" x-transition class="bg-white rounded-full p-2">
+                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="py-3">
+    <div class="relative mx-auto h-px max-w-6xl bg-gray-200">
+        <div class="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-gray-400 to-transparent"></div>
+    </div>
+</div>
+
+<div class="bg-white py-12">
+    <div class="relative mx-auto w-full max-w-6xl px-4">
+        <div class="flex items-center" aria-hidden="true">            
+            <!-- Teks di Tengah -->
+            <span class="font-['Clash_Grotesk'] flex-shrink-0 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-full shadow-sm">
+                What our client say
+            </span>
+            <!-- Garis Kanan -->
+            <div class="h-px w-full bg-gradient-to-r from-gray-500 to-transparent">
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="max-w-6xl mx-auto px-6 py-12 sm:px-8 lg:px-8 flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-[96px]">
+    <div class="flex flex-col items-center lg:items-start text-center lg:text-left flex-shrink-0">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight mb-4">
+            Latest Blog<br>& Articles</h1>
+        <p class="text-sm text-gray-400 tracking-widest mb-8">
+            IDEAS/NEWS/RESOURCE</p>
+       <a href="#" class="inline-flex items-center px-6 py-3 border border-black-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-100 shadow-sm">
+            View More
+         <img src="/pan.png" alt="Panah kanan" class="w-8 h-8 "> </a>
+    </div>
+
+    <div class="w-full flex flex-col md:flex-row items-center gap-8 md:gap-4">
+        <!-- Kartu 1 -->
+        <div class="bg-white border border-gray-200 rounded-[36px] p-4 shadow-md flex flex-col w-full">
+            <img src="/ef.png" alt="Security Lock" class="w-full rounded-2xl mb-4">
+            <div>
+                <h2 class="text-2xl font-medium text-[rgba(0, 0, 0, 1)]-500 mb-2">
+                    Cloudways Security Features for WordPress & Laravel
+                </h2>
+                <p class="text-gray-500 text-sm">
+                    Photo by Sasun Bughdaryan on Unsplash<br>
+                    Cyberattacks are becoming more sophisticated-<br>
+                    ranging from brute-force logins and DDoS attacks to ...                   
+                 </p>
+            </div>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-[36px] p-4 shadow-md flex flex-col w-full opacity-50">
+            <img src="/ef.png" alt="Security Lock" class="w-full h-auto rounded-xl mb-4">
+            <div>
+                <h2 class="text-lg font-medium text-gray-500 mb-2">
+                    Cloudways Security Features<br> for WordPress & Laravel
+                </h2>
+                <p class="text-gray-500 text-sm">
+                    Photo by Sasun Bughdaryan on Unsplash<br>
+                    Cyberattacks are becoming more sophisticated-<br>
+                    ranging from brute-force logins and DDoS attacks to ...               
+                 </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="bg-[#1F2937] text-white rounded-t-3xl">
+    <div class="mx-auto max-w-7xl px-8 py-16 sm:px-12 lg:px-16">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
+            <div class="lg:col-span-5">
+                <a href="#" class="inline-flex items-center gap-x-3">
+                    <img class="h-8 w-auto" src="/l2.png" alt="Mangcoding Logo">
+                </a>
+                <p class="mt-8 text-2xl font-semibold leading-relaxed text-slate-200 text-white">
+                    PT Anugrah Kreasi Digital. <br>
+                    karang tengah, Cibadak - Sukabumi
+                </p>
+                <div class="mt-8 space-y-4 text-slate-300 text-white">
+                    <p>hello@mangcoding.com</p>
+                    <p class="flex items-center gap-x-3">
+                        <img class="h-6 w-6" src="/tel.png" alt="Telepon">
+                        <span>0266-6532078</span>
+                    </p>
+                    <p class="flex items-center gap-x-3">
+                        <img class="h-6 w-6" src="/wat.png" alt="WhatsApp">
+                        <span>+62 857-5940-2332</span>
+                    </p>
+                </div>
+            </div>
+            <div class="lg:col-span-3 lg:col-start-10">
+                <nav x-data="{ activeLink: 'About' }">
+                    <ul class="space-y-4 text-right text-3xl font-semibold text-slate-300">
+                        <li><div class="relative inline-block"><div x-show="activeLink === 'Home'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Home'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Home</span><span x-show="activeLink === 'Home'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
+                        <li><div class="relative inline-block"><div x-show="activeLink === 'About'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div><a href="#" @click.prevent="activeLink = 'About'" class="relative block transition-all duration-200 ease-in-out bg-emerald-400 text-white rounded-full px-6 py-3 inline-flex items-center gap-x-3 -translate-x-1 -translate-y-1"><span>About</span><span x-show="activeLink === 'About'" class="inline-block rounded-full bg-white p-1"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
+                        <li><div class="relative inline-block"><div x-show="activeLink === 'Service'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Service'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Service</span><span x-show="activeLink === 'Service'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
+                        <li><div class="relative inline-block"><div x-show="activeLink === 'Blog'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Blog'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Blog</span><span x-show="activeLink === 'Blog'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
+                        <li><div class="relative inline-block"><div x-show="activeLink === 'Work'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Work'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Work</span><span x-show="activeLink === 'Work'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Garis -->
+        <hr class="my-7 border-slate-700">
+
+        <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
+            <div>
+                <div class="mt-4 flex items-center gap-x-8">
+                    <a href="#"><img class="w-56 h-[136px]" src="/gg.png" alt="Partner Logo"></a>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-start gap-4 md:items-end">
+                <div class="flex items-center justify-start gap-x-4 md:justify-end">
+                   <a href="#"><img class="h-6 w-6" src="/ig.png" alt="Instagram"></a>
+                   <a href="#"><img class="h-6 w-6" src="/git.png" alt="GitHub"></a>
+                   <a href="#"><img class="h-6 w-6" src="/you.png" alt="YouTube"></a>
+                   <a href="#"><img class="h-6 w-6" src="/in.png" alt="LinkedIn"></a>
+                </div>
+                <p class="mt-4 text-sm text-slate-400">
+                    © 2022 Mangcoding. All rights reserved.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+<script src="/src/main.js"></script>
+</body>
+</html> 
