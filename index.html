@@ -4,11 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/src/style.css" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500&display=swap" rel="stylesheet">
+  <link href="https://www.figma.com/design/RzEfj3obrlYAMgJEEwBzEv/SF-Pro-Display--Community-?node-id=0-1&p=f&t=1Y9bqHkXYVKfjHMJ-0" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> 
+  <style>
+
+    .font-clash {
+        font-family: 'Clash Grotesk', sans-serif;
+    }
+    .font-sfpro {
+        font-family: 'SF Pro Display', sans-serif; 
+    }
+    body {
+        font-family: 'SF Pro Display', 'Clash Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+    .font-heading { font-family: 'Clash Grotesk', sans-serif; }
+    .font-body { font-family: 'SF Pro Display', sans-serif; }
+
+.half-box-mask {
+    -webkit-mask-image: linear-gradient(to bottom, white 30%, transparent 100%);
+    mask-image: linear-gradient(to bottom, white 30%, transparent 100%);
+}
+ 
+.blog-slider .swiper-slide-prev {
+  opacity: 0 !important; 
+  visibility: hidden !important; 
+}
+
+.blog-slider .swiper-slide-next {
+  transform: scale(0.85) !important; 
+  opacity: 50%; 
+}
+
+.blog-slider .swiper-slide-active {
+  transform: scale(1) !important; 
+  opacity: 1 !important; 
+  z-index: 10;
+}
+
+.blog-slider .swiper-slide {
+  transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+}
+  </style>
 </head>
 <body class="bg-white">
-    <nav class="bg-transparan fixed top-0 left-0 w-full z-50" x-data="{ open: false }">
-        <div class="max-w-6xl max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="bg-white fixed top-0 left-0 w-full z-50" x-data="{ open: false }">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
@@ -41,18 +84,21 @@
                 </div>
 
                 <!-- Ikon dan Tombol Kanan -->
-                <div class="hidden md:flex items-center space-x-4">
-                     <button class="text-gray-600 hover:text-gray-900">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </button>
-                    <a href="#" class="bg-gray-100 text-gray-800 px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:bg-gray-200 flex items-center">
+               <div class="hidden md:flex items-center space-x-4">
+                <button class="text-gray-500">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <div class="relative group">
+                    <div class="absolute inset-0 translate-x-0 translate-y-1 rounded-full bg-gray-900 transition-transform duration-150 group-hover:translate-y-0"></div>
+                    <a href="#" class="relative inline-flex items-center bg-gray-100 text-gray-800 px-5 py-2 rounded-full text-sm font-semibold border-2 border-gray-500 transition-transform duration-150 group-hover:-translate-y-1">
                         Get in touch
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
+                    </a>        
                 </div>
+            </div>
 
                 <!-- Tombol Hamburger untuk Mobile -->
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center ">
                     <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 focus:outline-none">                        <span class="sr-only">Open main menu</span>
                         <svg :class="{'hidden': open, 'block': !open }" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -66,15 +112,15 @@
         </div>
 
         <!-- Menu Mobile -->
-         <div x-show="open" class="md:hidden">
+         <div x-show="open" class="md:hidden" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" class="bg-teal-400 text-black block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">About</a>
-                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Service</a>
-                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Our Works</a>
-                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Resources</a>
-                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Blog</a>
-                <a href="#" class="text-black-400 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-regular">Support</a>
+                <a href="#" class="text-gray-800 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-normal">About</a>
+                <a href="#" class="text-gray-800 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-normal">Service</a>
+                <a href="#" class="text-gray-800 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-normal">Our Works</a>
+                <a href="#" class="text-gray-800 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-normal">Resources</a>
+                <a href="#" class="text-gray-800 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-normal">Blog</a>
+                <a href="#" class="text-gray-800 hover:bg-gray-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-normal">Support</a>
                  <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between px-2">
                     <button class="text-gray-600 hover:text-gray-900">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -90,7 +136,7 @@
 
     <!-- BAGIAN UTAMA (HERO SECTION) -->
     <main class="relative overflow-hidden">
-    <div class="container max-w-6xl mx-auto px-8 py-16 md:py-24 relative">
+    <div class="container max-w-6xl mx-auto px-8 py-20 md:py-24 relative">
         
         <div class="absolute inset-0 z-0">
             <img src="/hero.png" alt="background logo" class="absolute -right-25 top-30 w-1/2 max-w-2xl ">
@@ -99,261 +145,409 @@
                 <!-- Judul Utama -->
                 <h1 class="text-4xl md:text-6xl lg:text-8xl tracking-tighter leading-tight">
                     <span class="text-gray-400 font-regular">Your Digital</span><br>
-                    <span class="text-gray-900 font-semibold">Excellence<br>Begins Here</span>
+                    <span class="text-black-500 font-medium">Excellence<br>Begins Here</span>
                 </h1>
-                <p class="mt-6 text-base text-gray-500 max-w-md">
-                   The Mangcoding team will help build a website for your company with quality and guaranteed services, withcustom templates you can create a website as you like.
+                <p class="mt-4 text-base text-gray-500 max-w-md pl-2">
+                   The Mangcoding team will help build a website for your company with quality and guaranteed services,
+                    with custom templates you can create a website as you like.
                 </p>
-
                 <!-- Tombol View More -->
-                <div class="mt-8">
-                    <a href="#" class="inline-flex items-center px-6 py-3 border border-black-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-100 shadow-sm">
-                        View More
-                     <img src="/pan.png" alt="Panah kanan" class="w-8 h-8 ">                
-                    </a>
+                <div class="ml-2 mt-6 relative inline-block">
+                <!-- Layer border di belakang -->
+                <div class="absolute inset-0 translate-x-0 translate-y-1 rounded-full bg-gray-900"></div>
+
+                <!-- Tombol utama -->
+                <a href="#" class="relative inline-flex items-center justify-center h-[32px] w-[112px] px-[6px] border border-[rgba(31,41,55,1)] rounded-[24px] text-sm font-semibold text-gray-700 bg-[rgba(245,247,250,1)] shadow-[0_0_4px_rgba(31,41,55,1)]">
+                    View More
+                    <img src="/pan.png" alt="Panah kanan" class="w-4 h-4">
+                </a>
                 </div>
             </div>
 
             <!-- BAGIAN STATISTIK -->
-            <div class="relative z-10 mt-12 md:mt-10">
-                 <div class="grid grid-cols-2 gap-y-10 gap-x-1 text-center md:grid-cols-4">                    <!-- Stat 1 -->
-                    <div class="md:border-r md:border-gray-200">
-                        <p class="text-5xl font-medium text-['Clash_Grotesk']">18+</p>
-                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Satisfied Client</p>
-                    </div>
-                    <!-- Stat 2 -->
-                    <div class="md:border-r md:border-gray-200">
-                        <p class="text-5xl font-medium text-['Clash_Grotesk']">26+</p>
-                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Project</p>
-                    </div>
-                    <!-- Stat 3 -->
-                    <div class="md:border-r md:border-gray-200">
-                        <p class="text-5xl font-medium text-['Clash_Grotesk']">3+</p>
-                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Years</p>
-                    </div>
-                    <!-- Stat 4 -->
-                    <div>
-                        <p class="text-5xl font-medium text-['Clash_Grotesk']">10+</p>
-                        <p class="text-['SF_Pro_Display'] text-base font-regular text-['rgba(0, 0, 0, 1)']-400 mt-1">Countries</p>
-                    </div>
+            <div class="relative z-10 mt-10">
+            <div class="flex justify-center divide-x divide-gray-200">
+                
+                <!-- Stat 1 -->
+                <div class="w-[222px] h-[68px] px-[30px] text-center">
+                <p class="text-5xl font-medium text-['Clash_Grotesk']">18+</p>
+                <p class="text-['SF_Pro_Display'] text-base font-regular mt-1">Satisfied Client</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="w-[222px] h-[68px] px-[30px] text-center">
+                <p class="text-5xl font-medium text-['Clash_Grotesk']">26+</p>
+                <p class="text-['SF_Pro_Display'] text-base font-regular mt-1">Project</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="w-[222px] h-[68px] px-[30px] text-center">
+                <p class="text-5xl font-medium text-['Clash_Grotesk']">3+</p>
+                <p class="text-['SF_Pro_Display'] text-base font-regular mt-1">Years</p>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="w-[222px] h-[68px] px-[30px] text-center">
+                <p class="text-5xl font-medium text-['Clash_Grotesk']">10+</p>
+                <p class="text-['SF_Pro_Display'] text-base font-regular mt-1">Countries</p>
                 </div>
             </div>
-
+            </div>
         </div> 
+        </main>
 
         <!-- BAGIAN LOGO KLIEN -->
-        <div class="container max-w-6xl mx-auto px-6 pb-20">
+        <div class="max-w-6xl mx-auto mt-[-4rem]">
             <div class="relative z-10 bg-white border border-black-300 rounded-3xl p-6 shadow-xl shadow-black-200/70">
-                <div class="flex flex-wrap items-center justify-around gap-x-4 gap-y-8">
-                    <img class="h-10 w-auto" src="/lenovo.png" alt="Lenovo">
+                <div class="flex flex-wrap items-center justify-around gap-x-2 gap-y-4">
+                    <img class="h-8 w-auto" src="/lenovo.png" alt="Lenovo">
                     <img class="h-8 w-auto" src="/rata.png" alt="Rata">
                     <img class="h-8 w-auto" src="/ceria.png" alt="CorlKid">
-                    <img class="h-10 w-auto" src="/intel.png" alt="Intel">
+                    <img class="h-8 w-auto" src="/intel.png" alt="Intel">
                     <img class="h-8 w-auto" src="/nvidia.png" alt="Nvidia">
-                    <img class="h-7 w-auto" src="/micro.png" alt="Microsoft">
+                    <img class="h-8 w-auto" src="/micro.png" alt="Microsoft">
                     <img class="h-8 w-auto" src="/deep.png" alt="Deepseek">
                 </div>
             </div>
         </div>
-    </main>
 
-<section class="bg-white py-10 sm:py-10">
-    <div class="container max-w-6xl mx-auto px-4">
-
-        <!-- Judul Utama -->
+<section class="bg-white py-5 mt-20">
+    <div class="container max-w-[1200px] mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-3xl sm:text-4xl text-gray-500 font-heading">
+            <h2 class="text-4xl sm:text-5xl font-regular text-gray-400 font-heading">
                 Just give the idea and
             </h2>
-            <p class="text-4xl sm:text-5xl font-bold text-gray-900 mt-2 font-heading">
+            <p class="text-4xl sm:text-5xl font-medium text-[#00000080]-500 font-heading">
                 we will make it come true
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-
-            <!-- Kartu 1: Shopify -->
-            <div class="relative">
-                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
-                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Shopify Theme <br> Development</h3>
-                        <img src="/1.png" alt="Shopify Icon" class="h-10 w-10 flex-shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="card-item relative cursor-pointer">
+                <div class="absolute inset-0 translate-y-2 rounded-[36px] bg-[#1F2937]"></div>
+                <div class="card-content relative w-full max-w-[590px] rounded-[36px] border border-[#1F2937] bg-[#F5F7FA] p-[54px]">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="card-title text-2xl md:text-4xl font-medium text-[#001F22]">
+                                Shopify Theme <br class="hidden md:block"> Development
+                            </h3>
+                            <img class="card-icon h-[72px] w-[72px] object-contain flex-shrink-0 ml-4" src="/1.png" alt="Shopify Icon">
+                        </div>
+                        <p class="card-text mt-10 text-base text-[#00000099] leading-[1.2] max-w-[320px]">
+                            Shopify theme development is the process of
+                            creating, customizing, and optimizing the user
+                            interface for a Shopity-based online store. PT 
+                            Anugrah Kreasi Digital (mangcoding) offers
+                            professional and high quality Shopify theme
+                            development services.
+                        </p>
                     </div>
-                    <p class="text-gray-500 text-sm leading-relaxed font-body">
-                        Shopify theme development is the process of creating, customizing, and optimizing the User Interface (UI) and User Experience (UX) of an online store. PT Anugrah Sinar Digital (mangcoding) offers professional and high-quality Shopify theme development services.
-                    </p>
                 </div>
             </div>
 
-            <!-- Kartu 2: WordPress -->
-            <div class="relative">
-                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
-                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 font-heading">WordPress theme <br> Development</h3>
-                        <img src="/1.png" alt="WordPress Icon" class="h-10 w-10 flex-shrink-0">
+            <div class="card-item relative cursor-pointer"> 
+                <div class="absolute inset-0 translate-y-2 rounded-[36px] bg-[#1F2937]"></div>
+                <div class="card-content relative w-full max-w-[590px] rounded-[36px] border border-[#1F2937] bg-[#F5F7FA] p-[54px]">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="card-title text-2xl md:text-4xl font-medium text-[#001F22]">
+                                WordPress theme <br class="hidden md:block"> Development
+                            </h3>
+                            <img class="card-icon h-[72px] w-[72px] object-contain flex-shrink-0 ml-4" src="/1.png" alt="Shopify Icon">
+                        </div>
+                        <p class="card-text mt-10 text-base  text-[#00000099] leading-[1.2] max-w-[330px]">
+                            WordPress theme development is the process 
+                            of creating, customizing, and optimizing User
+                            Interface (UI) for websites built on the WordPress
+                            platform. PT Anugrah Sinar Digital 
+                            (mangcoding) provides professional and high-
+                            quality WordPress theme development services.
+                        </p>
                     </div>
-                    <p class="text-gray-500 text-sm leading-relaxed font-body">
-                        WordPress theme development is the process of creating, customizing, and optimizing User Interface (UI) for websites built on the WordPress platform. PT Anugrah Sinar Digital (mangcoding) provides professional and high-quality WordPress theme development services.
-                    </p>
                 </div>
             </div>
             
-            <!-- Kartu 3: Custom Plugin -->
-            <div class="relative">
-                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
-                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Custom Plugin / <br> Custom App</h3>
-                        <img src="/2.png" alt="Plugin Icon" class="h-10 w-10 flex-shrink-0">
+            <div class="card-item relative cursor-pointer">
+                <div class="absolute inset-0 translate-y-2 rounded-[36px] bg-[#1F2937]"></div>
+                <div class="card-content relative w-full max-w-[590px] rounded-[36px] border border-[#1F2937] bg-[#F5F7FA] p-[54px]">
+                    <div>
+                        <div class="flex items-start justify-between">
+                            <h3 class="card-title text-4xl font-medium text-[#001F22]">
+                                Custom Plugin / <br> Custom App
+                            </h3>
+                            <img class="card-icon h-[72px] w-[72px] flex-shrink-0" src="/2.png" alt="Shopify Icon">
+                        </div>
+                        <p class="card-text mt-14 text-base  text-[#00000099] leading-[1.2] max-w-[386px]">
+                            Custom Plugin or Custom App is a customized 
+                            software solution designed to meet the unique needs
+                            of a particular platform or system, such as WordPress or 
+                            Shopify. PT Anugrah Sinar Digital (mangcoding) provides
+                            high-quality custom plugin and custom app development
+                            services that meet your business specifications.
+                        </p>
                     </div>
-                    <p class="text-gray-500 text-sm leading-relaxed font-body">
-                        Custom Plugin or Custom App is a customized software solution designed to meet the unique needs of a particular platform or system, such as WordPress or Shopify. PT Anugrah Sinar Digital (mangcoding) provides high-quality custom plugin and custom app development services that meet your business specifications.
-                    </p>
                 </div>
             </div>
 
-            <!-- Kartu 4: Web Application -->
-            <div class="relative">
-                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
-                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Web Application <br> Development</h3>
-                        <img src="/3.png" alt="Web App Icon" class="h-10 w-10 flex-shrink-0">
+            <div class="card-item relative cursor-pointer">
+                <div class="absolute inset-0 translate-y-2 rounded-[36px] bg-[#1F2937]"></div>
+                <div class="card-content relative w-full max-w-[590px] rounded-[36px] border border-[#1F2937] bg-[#F5F7FA] p-[54px]">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="card-title text-2xl md:text-4xl font-medium text-[#001F22]">
+                                Web Application <br class="hidden md:block"> Development
+                            </h3>
+                            <img class="card-icon h-[72px] w-[72px] object-contain flex-shrink-0 ml-4" src="/3.png" alt="Shopify Icon">
+                        </div>
+                        <p class="card-text mt-10 text-base  text-[#00000099] leading-[1.2] max-w-[377px]">
+                            Web Application Development is the process of 
+                            creating, testing, and customizing applications that can
+                            be accessed through a web browser. PT Anugrah
+                            Kreasi Digital (mangcoding) provides comprehensive
+                            and high-quality web application development services
+                            to meet the needs of various types of businesses.                    
+                        </p>
                     </div>
-                    <p class="text-gray-500 text-sm leading-relaxed font-body">
-                        Web Application Development is the process of building a software program that runs on a web server and can be accessed through a web browser. PT Anugrah Sinar Digital (mangcoding) provides experienced and expert web application development services to meet the needs of various types of businesses.
-                    </p>
                 </div>
             </div>
 
-            <!-- Kartu 5: Logos and Branding -->
-            <div class="relative">
-                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
-                <div class="relative bg-gray-50 p-8 border-2 border-gray-900 rounded-3xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-gray-800 font-heading">Logos and <br> Branding</h3>
-                        <img src="/4.png" alt="Branding Icon" class="h-10 w-10 flex-shrink-0">
+            <div class="card-item relative cursor-pointer">
+                <div class="absolute inset-0 translate-y-2 rounded-[36px] bg-[#1F2937]"></div>
+                <div class="card-content relative w-full max-w-[590px] rounded-[36px] border border-[#1F2937] bg-[#F5F7FA] p-[54px]">
+                    <div>
+                        <div class="flex items-start justify-between">
+                            <h3 class="card-title text-4xl font-medium text-[#001F22]">
+                                Logos and <br> Branding
+                            </h3>
+                            <img class="card-icon h-[72px] w-[72px] flex-shrink-0" src="/4.png" alt="Shopify Icon">
+                        </div>
+                        <p class="card-text mt-10 text-base  text-[#00000099] leading-[1.2] max-w-[320px]">
+                            Logo and branding are two concepts that are
+                            often considered the same, even though they
+                            have different roles. A logo is a symbol that
+                            represents the visual identity of a brand or
+                            company, while branding is a broader process in 
+                            building and managing the image of a brand             
+                        </p>
                     </div>
-                    <p class="text-gray-500 text-sm leading-relaxed font-body">
-                        Logo and branding are two concepts that are often considered the same, even though they have different roles. A logo is a symbol that represents a company, which is a brand of company, while branding is a broader process of building and managing the image of a brand.
-                    </p>
                 </div>
             </div>
             
-            <!-- Kartu 6: UI/UX -->
-            <div class="relative">
-                <div class="absolute inset-0 translate-x-0 translate-y-1.5 rounded-3xl bg-gray-900"></div>
-                <div class="relative bg-teal-500 text-white p-8 border-2 border-gray-900 rounded-3xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold font-heading">User Interface & User <br> Experience Design</h3>
-                        <img src="/5.png" alt="UI/UX Icon" class="h-10 w-10 flex-shrink-0">
+            <div class="card-item relative cursor-pointer">
+                <div class="absolute inset-0 translate-y-2 rounded-[36px] bg-[#1F2937]"></div>
+                <div class="card-content relative w-full max-w-[590px] rounded-[36px] border border-[#1F2937] bg-[#F5F7FA] p-[54px]">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="card-title text-2xl md:text-4xl font-medium text-[#001F22]">
+                                User Interface & User <br class="hidden md:block"> Experience Design
+                            </h3>
+                            <img class="card-icon h-[56px] w-[72px] object-contain flex-shrink-0 ml-4" src="/5.png" alt="Shopify Icon">
+                        </div>
+                        <p class="card-text mt-10 text-base  text-[#00000099] leading-[1.2] max-w-[370px]">
+                            User Interface (UI) and User Experience (UX) design
+                            are key in ensuring that a digital product or service
+                            provides an intuitive, efficient, and satisfying experience
+                            for users. PT Anugrah Kreasi Digital (mangcoding)
+                            provides UI/UX design services that focus on creating
+                            good interactions between users and digital products.                    
+                        </p>
                     </div>
-                    <p class="text-teal-100 text-sm leading-relaxed font-body">
-                        User Interface (UI) and User Experience (UX) design are key in creating that a digital product or service provides a positive and relevant experience to its users. PT Anugrah Sinar Digital (mangcoding) provides UI/UX design services that focus on creating good interactions between users and digital products.
-                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="py-3">
+
+<div class="py-5">
     <div class="relative mx-auto h-px max-w-6xl bg-gray-200">
         <div class="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-gray-400 to-transparent"></div>
     </div>
 </div>
 
-<section class="bg-white-50 py-8 sm:py-24 flex items-center justify-center">
-    <div class="w-full max-w-6xl mx-auto px-4">
-        <div x-data="{ activeItem: 2 }" class="relative space-y-[-24px]">
+<section class="bg-white py-12 flex items-center justify-center">
+    <div class="w-[1200px] max-w-6xl mx-auto px-4">
+        <div x-data="{ activeItem: null }" class="relative flex flex-col items-center">
 
-            <!-- Item 1: App AyahHebat -->
             <div
                 @click="activeItem = 1"
-                class="relative p-8 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                class="relative w-full cursor-pointer rounded-3xl transition-all duration-300 ease-in-out transform -mt-4 first:mt-0"
                 :class="{
-                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/50': activeItem === 1,
-                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 1}">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-xl font-semibold">App AyahHebat</h3>
-                    <!-- Ikon hanya muncul saat item aktif -->
-                    <div x-show="activeItem === 1" x-transition class="bg-white rounded-full p-2">
-                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    'z-10': activeItem === 1,
+                    'z-0': activeItem !== 1
+                }"
+            >
+                <div x-show="activeItem === 1" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-0" x-transition:enter-end="opacity-100 translate-y-1" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-1" x-transition:leave-end="opacity-0 translate-y-0"
+                     class="absolute inset-0 top-0 left-0 right-0 rounded-3xl bg-black border border-black transform translate-y-1"></div>
+                <div
+                    class="relative rounded-3xl border transition-all duration-300 ease-in-out"
+                    :class="{
+                        'bg-emerald-400 text-white border-transparent py-8 px-12': activeItem === 1,
+                        'bg-gradient-to-b from-gray-50 to-white text-gray-800 border-gray-200 hover:bg-gray-100 py-8 px-8': activeItem !== 1
+                    }"
+                >
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="font-regular-400 font-[Clash_Grotesk]" :class="{'text-5xl': activeItem === 1, 'text-2xl': activeItem !== 1}">
+                                App AyahHebat
+                            </h3>
+                            <p x-show="activeItem === 1" x-transition class="text-sm" :class="{'text-emerald-100': activeItem === 1}">
+                                Development
+                            </p>
+                        </div>
+                        <div x-show="activeItem === 1" x-transition class="bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-emerald-500 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 2: Orely.co (Aktif secara default) -->
             <div
                 @click="activeItem = 2"
-                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                class="relative w-full cursor-pointer rounded-3xl transition-all duration-300 ease-in-out transform -mt-4 first:mt-0"
                 :class="{
-                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 2,
-                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 2}">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold">Orely.co</h3>
-                        <p class="text-sm text-emerald-100 mt-1">Development</p>
-                    </div>
-                    <!-- Ikon selalu terlihat di item aktif -->
-                    <div class="bg-white rounded-full p-3 shadow-inner">
-                        <svg class="w-6 h-6 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    'z-10': activeItem === 2,
+                    'z-0': activeItem !== 2
+                }"
+            >
+                <div x-show="activeItem === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-0" x-transition:enter-end="opacity-100 translate-y-1" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-1" x-transition:leave-end="opacity-0 translate-y-0"
+                     class="absolute inset-0 top-0 left-0 right-0 rounded-3xl bg-black border border-black transform translate-y-1"></div>
+                <div
+                    class="relative rounded-3xl border transition-all duration-300 ease-in-out"
+                    :class="{
+                        'bg-emerald-400 text-white border-transparent py-8 px-12': activeItem === 2,
+                        'bg-gradient-to-b from-gray-50 to-white text-gray-800 border-gray-200 hover:bg-gray-100 py-8 px-8': activeItem !== 2
+                    }"
+                >
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="font-regular-400 font-[Clash_Grotesk]" :class="{'text-5xl': activeItem === 2, 'text-2xl': activeItem !== 2}">
+                                Orely.co
+                            </h3>
+                            <p x-show="activeItem === 2" x-transition class="text-sm" :class="{'text-emerald-100': activeItem === 2}">
+                                Development
+                            </p>
+                        </div>
+                        <div x-show="activeItem === 2" x-transition class="bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-emerald-500 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 3: Mezo Logo -->
             <div
                 @click="activeItem = 3"
-                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                class="relative w-full cursor-pointer rounded-3xl transition-all duration-300 ease-in-out transform -mt-4 first:mt-0"
                 :class="{
-                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 3,
-                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 3}">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-xl font-semibold">Mezo Logo</h3>
-                    <div x-show="activeItem === 3" x-transition class="bg-white rounded-full p-2">
-                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    'z-10': activeItem === 3,
+                    'z-0': activeItem !== 3
+                }"
+            >
+                <div x-show="activeItem === 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-0" x-transition:enter-end="opacity-100 translate-y-1" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-1" x-transition:leave-end="opacity-0 translate-y-0"
+                     class="absolute inset-0 top-0 left-0 right-0 rounded-3xl bg-black border border-black transform translate-y-1"></div>
+                <div
+                    class="relative rounded-3xl border transition-all duration-300 ease-in-out"
+                    :class="{
+                        'bg-emerald-400 text-white border-transparent py-8 px-12': activeItem === 3,
+                        'bg-gradient-to-b from-gray-50 to-white text-gray-800 border-gray-200 hover:bg-gray-100 py-8 px-8': activeItem !== 3
+                    }"
+                >
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="font-regular-400 font-[Clash_Grotesk]" :class="{'text-5xl': activeItem === 3, 'text-2xl': activeItem !== 3}">
+                                Mezo Logo
+                            </h3>
+                            <p x-show="activeItem === 3" x-transition class="text-sm" :class="{'text-emerald-100': activeItem === 3}">
+                                Development
+                            </p>
+                        </div>
+                        <div x-show="activeItem === 3" x-transition class="bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-emerald-500 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 4: Pakubumi Semesta -->
             <div
                 @click="activeItem = 4"
-                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                class="relative w-full cursor-pointer rounded-3xl transition-all duration-300 ease-in-out transform -mt-4 first:mt-0"
                 :class="{
-                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 4,
-                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 4}">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-xl font-semibold">Pakubumi Semesta</h3>
-                    <div x-show="activeItem === 4" x-transition class="bg-white rounded-full p-2">
-                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    'z-10': activeItem === 4,
+                    'z-0': activeItem !== 4
+                }"
+            >
+                <div x-show="activeItem === 4" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-0" x-transition:enter-end="opacity-100 translate-y-1" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-1" x-transition:leave-end="opacity-0 translate-y-0"
+                     class="absolute inset-0 top-0 left-0 right-0 rounded-3xl bg-black border border-black transform translate-y-1"></div>
+                <div
+                    class="relative rounded-3xl border transition-all duration-300 ease-in-out"
+                    :class="{
+                        'bg-emerald-400 text-white border-transparent py-8 px-12': activeItem === 4,
+                        'bg-gradient-to-b from-gray-50 to-white text-gray-800 border-gray-200 hover:bg-gray-100 py-8 px-8': activeItem !== 4
+                    }"
+                >
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="font-regular-400 font-[Clash_Grotesk]" :class="{'text-5xl': activeItem === 4, 'text-2xl': activeItem !== 4}">
+                                Pakubumi Semesta
+                            </h3>
+                            <p x-show="activeItem === 4" x-transition class="text-sm" :class="{'text-emerald-100': activeItem === 4}">
+                                Development
+                            </p>
+                        </div>
+                        <div x-show="activeItem === 4" x-transition class="bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-emerald-500 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Item 5: Daiichi -->
             <div
                 @click="activeItem = 5"
-                class="relative p-6 rounded-xl border cursor-pointer transition-all duration-300 ease-in-out transform"
+                class="relative w-full cursor-pointer rounded-3xl transition-all duration-300 ease-in-out transform -mt-4 first:mt-0"
                 :class="{
-                    'bg-emerald-400 text-white scale-105 z-10 shadow-lg border-black/20': activeItem === 5,
-                    'bg-white text-gray-800 hover:bg-gray-100 z-0 shadow-sm border-gray-200': activeItem !== 5}">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-xl font-semibold">Daiichi</h3>
-                        <p class="text-sm" :class="{'text-emerald-100': activeItem === 5, 'text-gray-400': activeItem !== 5}">Development</p>
-                    </div>
-                    <div x-show="activeItem === 5" x-transition class="bg-white rounded-full p-2">
-                        <svg class="w-5 h-5 text-emerald-500 transform rotate-[-45deg]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    'z-10': activeItem === 5,
+                    'z-0': activeItem !== 5,
+                    'half-box-mask': activeItem !== 5 
+                }"
+            >
+                <div x-show="activeItem === 5" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-y-7 translate-y-0" x-transition:enter-end="opacity-100 translate-y-1" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-1" x-transition:leave-end="opacity-0 translate-y-0"
+                     class="absolute inset-0 top-0 left-0 right-0 rounded-3xl bg-black border border-black transform translate-y-1"></div>
+                <div
+                    class="relative rounded-3xl border transition-all duration-300 ease-in-out"
+                    :class="{
+                        'bg-emerald-400 text-white border-transparent py-8 px-12': activeItem === 5,
+                        'bg-gradient-to-b from-gray-50 to-white text-gray-800 border-gray-200 hover:bg-gray-100 py-8 px-8': activeItem !== 5
+                    }"
+                >
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="font-regular-400 font-[Clash_Grotesk]" :class="{'text-5xl': activeItem === 5, 'text-2xl': activeItem !== 5}">
+                                Daiichi
+                            </h3>
+                             <p class="text-sm" :class="{'text-emerald-100': activeItem === 5, 'text-gray-500': activeItem !== 5}">
+                            Development
+                            </p>
+                        </div>
+                        <div x-show="activeItem === 5" x-transition class="bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-emerald-500 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
 </section>
+
 
 
 <div class="py-3">
@@ -376,88 +570,227 @@
     </div>
 </div>
 
-<section class="bg-white-100 py-10 sm:py-2">
-    <div class="container mx-auto max-w-6xl px-4">
-        
+<!--testi slider-->
+<section class="bg-white py-10 sm:py-2">
+    <div class="container mx-auto max-w-6xl px-4">        
         <div class="relative">
-            <div class="absolute inset-0 translate-x-2 translate-y-2 rounded-[2rem] bg-slate-800"></div>
-
-            <div class="relative rounded-[2rem] border-2 border-slate-800 bg-sky-400 py-8 px-12 md:py-12 md:px-20 text-white">
-                
-               <img src="/f.png" alt="ceria fajar" class="w-16 h-16">
-
-                <blockquote class=" text-['Clash_Grotesk_Variable'] text-xl font-regular  text-white/90 md:text-3xl mt-6">
-                    I've been Mangcoding customer since couple years ago and never<br> disappointed. 
-                    <span class="text-['Clash_Grotesk_Variable'] font-medium text-white">I can say, I totally satisfy with the service and of<br>
-                         course the website they've created for me.</span> 
-                    Great theme, easy to operate, and especially, the staffs are always helpfull.
-                </blockquote>
-
-                <hr class="my-8 border-t border-white/50" />
-
-                <footer class="">
-                    <div class="font-bold text-white">Ceria Fajar</div>
-                    <div class="mt-1 text-sm text-white/80">CEO of Ceriakid.id</div>
-                </footer>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="bg-white py-12">
-    <div class="relative mx-auto w-full max-w-6xl px-4">
-        <div class="flex items-center" aria-hidden="true">
-
-            <div class="h-px w-full bg-gradient-to-l from-gray-500 to-transparent">
+            <!-- 1. SWIPER CONTAINER -->
+        <div class="swiper testimonial-slider px-6 md:px-12">
+                <div class="swiper-wrapper">
+                    
+                    <!-- SLIDE 1 -->
+                    <div class="swiper-slide">
+                     <div class="relative">
+                    <div class="absolute inset-0 translate-x-0 translate-y-2 rounded-[2rem] bg-slate-800"></div>
+                    <div class="relative rounded-[2rem] border-2 border-slate-800 bg-sky-400 py-8 px-12 md:py-12 md:px-20 text-white">            
+                    <img src="/f.png" alt="ceria fajar" class="w-16 h-16">
+                        <blockquote class="text-xl font-regular text-white/90 md:text-3xl mt-6">
+                            I've been Mangcoding customer since couple years ago and never<br> disappointed. 
+                            <span class="font-medium text-white">I can say, I totally satisfy with the service and of<br>
+                                course the website they've created for me.</span> 
+                            Great theme, easy<br> to operate, and especially, the staffs are always helpfull.
+                        </blockquote>
+                        <hr class="my-8 border-t border-white/50" />
+                        <footer class="">
+                            <div class="font-bold text-white">Ceria Fajar</div>
+                            <div class="mt-1 text-sm text-white/80">CEO of Ceriakid.id</div>
+                        </footer>
+                    </div>    
+                </div>
             </div>
 
-            <div class="flex-shrink-0 p-1  bg-white ">
-                <img class="w-full h-8 "src="/w.png" alt="Client Avatar">
+                    <!-- SLIDE 2 -->
+                   <div class="swiper-slide">
+                    <div class="relative">
+                        <div class="absolute inset-0 translate-x-0 translate-y-2 rounded-[2rem] bg-slate-800"></div>
+                        <div class="relative rounded-[2rem] border-2 border-slate-800 bg-sky-400 py-8 px-12 md:py-12 md:px-20 text-white">            
+                        <img src="/f.png" alt="ceria fajar" class="w-16 h-16">
+                            <blockquote class="text-xl font-regular text-white/90 md:text-3xl mt-6">
+                                I've been Mangcoding customer since couple years ago and never<br> disappointed. 
+                                <span class="font-medium text-white">I can say, I totally satisfy with the service and of<br>
+                                    course the website they've created for me.</span> 
+                                Great theme, easy<br> to operate, and especially, the staffs are always helpfull.
+                            </blockquote>
+                            <hr class="my-8 border-t border-white/50" />
+                            <footer class="">
+                                <div class="font-bold text-white">Ceria Fajar</div>
+                                <div class="mt-1 text-sm text-white/80">CEO of Ceriakid.id</div>
+                            </footer>
+                        </div>    
+                    </div>
+                </div>
+                    
+                    <!-- SLIDE 3 -->
+                   <div class="swiper-slide">
+                    <div class="relative">
+                        <div class="absolute inset-0 translate-x-0 translate-y-2 rounded-[2rem] bg-slate-800"></div>
+                        <div class="relative rounded-[2rem] border-2 border-slate-800 bg-sky-400 py-8 px-12 md:py-12 md:px-20 text-white">            
+                        <img src="/f.png" alt="ceria fajar" class="w-16 h-16">
+                            <blockquote class="text-xl font-regular text-white/90 md:text-3xl mt-6">
+                                I've been Mangcoding customer since couple years ago and never<br> disappointed. 
+                                <span class="font-medium text-white">I can say, I totally satisfy with the service and of<br>
+                                    course the website they've created for me.</span> 
+                                Great theme, easy<br> to operate, and especially, the staffs are always helpfull.
+                            </blockquote>
+                            <hr class="my-8 border-t border-white/50" />
+                            <footer class="">
+                                <div class="font-bold text-white">Ceria Fajar</div>
+                                <div class="mt-1 text-sm text-white/80">CEO of Ceriakid.id</div>
+                            </footer>
+                        </div>    
+                    </div>
+                </div>     
+
+                    <!-- SLIDE 4 -->
+                    <div class="swiper-slide">
+                    <div class="relative">
+                        <div class="absolute inset-0 translate-x-0 translate-y-2 rounded-[2rem] bg-slate-800"></div>
+                        <div class="relative rounded-[2rem] border-2 border-slate-800 bg-sky-400 py-8 px-12 md:py-12 md:px-20 text-white">            
+                        <img src="/f.png" alt="ceria fajar" class="w-16 h-16">
+                            <blockquote class="text-xl font-regular text-white/90 md:text-3xl mt-6">
+                                I've been Mangcoding customer since couple years ago and never<br> disappointed. 
+                                <span class="font-medium text-white">I can say, I totally satisfy with the service and of<br>
+                                    course the website they've created for me.</span> 
+                                Great theme, easy<br> to operate, and especially, the staffs are always helpfull.
+                            </blockquote>
+                            <hr class="my-8 border-t border-white/50" />
+                            <footer class="">
+                                <div class="font-bold text-white">Ceria Fajar</div>
+                                <div class="mt-1 text-sm text-white/80">CEO of Ceriakid.id</div>
+                            </footer>
+                        </div>    
+                    </div>
+                </div>     
+
+                    <!-- SLIDE 5 -->
+                    <div class="swiper-slide">
+                        <div class="relative p-1">
+                            <div class="absolute inset-0 translate-y-1 rounded-[2rem] border-2 border-black bg-black"></div>                            
+                            <div class="relative z-10 rounded-[2rem] border-2 border-black bg-sky-400 py-8 px-12 md:py-12 md:px-20 text-white">
+                                <img src="/f.png" alt="ceria fajar" class="w-16 h-16">
+                                <blockquote class="text-xl font-regular text-white/90 md:text-3xl mt-6">
+                                    I've been Mangcoding customer since couple years ago and never<br> disappointed.
+                                    <span class="font-medium text-white">I can say, I totally satisfy with the service and of<br>
+                                        course the website they've created for me.</span>
+                                    Great theme, easy<br> to operate, and especially, the staffs are always helpfull.
+                                </blockquote>
+                                <hr class="my-8 border-t border-white/50" />
+                                <footer>
+                                    <div class="font-bold text-white">Ceria Fajar</div>
+                                    <div class="mt-1 text-sm text-white/80">CEO of Ceriakid.id</div>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+<div class="mt-8 mx-auto w-full max-w-6xl px-4">
+    <div class="flex items-center">
+        
+        <div class="flex-grow h-px bg-gray-200"></div>
+
+        <!-- 2. TOMBOL NAVIGASI -->
+        <div class="flex-shrink-0 flex items-center justify-center gap-4 border border-gray-300 rounded-full py-2 px-4 shadow-sm">
+            
+            <!-- Tombol Mundur -->
+            <button class="testimonial-prev-btn">
+                <svg class="w-4 h-4 text-gray-600 hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </button>
+
+            <!-- Penomoran -->
+            <div class="testimonial-pagination text-sm font-medium text-gray-500 w-10 text-center"></div>
+
+            <!-- Tombol Maju -->
+            <button class="testimonial-next-btn">
+                <svg class="w-4 h-4 text-gray-600 hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m14-7H3" />
+                </svg>
+            </button>
         </div>
     </div>
 </div>
 
-<section class="max-w-6xl mx-auto px-6 py-12 sm:px-8 lg:px-8 flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-[96px]">
-    <div class="flex flex-col items-center lg:items-start text-center lg:text-left flex-shrink-0">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight mb-4">
-            Latest Blog<br>& Articles</h1>
-        <p class="text-sm text-gray-400 tracking-widest mb-8">
-            IDEAS/NEWS/RESOURCE</p>
-       <a href="#" class="inline-flex items-center px-6 py-3 border border-black-300 rounded-full text-sm font-semibold text-gray-700 hover:bg-gray-100 shadow-sm">
-            View More
-         <img src="/pan.png" alt="Panah kanan" class="w-8 h-8 "> </a>
-    </div>
-
-    <div class="w-full flex flex-col md:flex-row items-center gap-8 md:gap-4">
-        <!-- Kartu 1 -->
-        <div class="bg-white border border-gray-200 rounded-[36px] p-4 shadow-md flex flex-col w-full">
-            <img src="/ef.png" alt="Security Lock" class="w-full rounded-2xl mb-4">
+ <!--Slider-->
+<section class="bg-white py-20 sm:py-24 overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 items-center gap-x-6 gap-y-16 lg:grid-cols-3">
+            
+           <!-- KOLOM KIRI -->
+        <div class="lg:col-span-1 flex flex-col justify-between h-[470px] max-w-[318px]">
             <div>
-                <h2 class="text-2xl font-medium text-[rgba(0, 0, 0, 1)]-500 mb-2">
-                    Cloudways Security Features for WordPress & Laravel
+                <h2 class="text-5xl font-medium tracking-tighter text-black sm:text-6xl">
+                    Latest Blog <br> & Articles
                 </h2>
-                <p class="text-gray-500 text-sm">
-                    Photo by Sasun Bughdaryan on Unsplash<br>
-                    Cyberattacks are becoming more sophisticated-<br>
-                    ranging from brute-force logins and DDoS attacks to ...                   
-                 </p>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                    IDEAS/NEWS/RESOURCE
+                </p>
+            </div>
+
+        <a href="#" class="inline-flex items-center gap-x-1.5 rounded-full border border-[rgba(0, 0, 0, 0.5)] bg-[#D9D9D9] px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-200 hover:shadow-md transition-all max-w-fit">
+            <span>View More</span>
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"> 
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 19L19 5M19 5H9m10 0v10"/></svg>
+            </a>
+        </div>
+            <!-- KOLOM KANAN -->
+                <div class="w-full min-w-0 lg:col-span-2 max-w-5xl">
+                    <div class="swiper blog-slider">
+                    <div class="swiper-wrapper py-4">
+
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide flex justify-center">
+                            <div class="flex h-[505px] w-full max-w-[508px] flex-shrink-0 flex-col gap-[13px] rounded-[36px] border border-black/50 bg-white px-[36px] py-[48px] shadow-xl shadow-slate-300/30">
+                                <div class="flex-1 overflow-hidden rounded-2xl">
+                                    <img src="/ef.png" alt="Blog post thumbnail" class="h-full w-full object-cover">
+                                </div>
+                                <div class="flex flex-col">
+                                    <h2 class="text-xl font-medium leading-[1.2] text-black-500">Cloudways Security Features <br> for WordPress & Laravel</h2>
+                                    <p class="mt-5 font-regular leading-[1.2] text-#000000 ">Photo by Sasun Bughdaryan on Unsplash<br>
+                                        Cyberattacks are becoming more sophisticated-<br>
+                                        ranging from brute-force logins and DDoS attacks to ...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide flex justify-center">
+                            <div class="flex h-[505px] w-full max-w-[508px] flex-shrink-0 flex-col gap-[13px] rounded-[36px] border border-black/50 bg-white px-[36px] py-[48px] shadow-xl shadow-slate-300/30">
+                                <div class="flex-1 overflow-hidden rounded-2xl">
+                                    <img src="/ef.png" alt="Blog post thumbnail" class="h-full w-full object-cover">
+                                </div>
+                                <div class="flex flex-col">
+                                    <h2 class="text-xl font-medium leading-[1.2] text-black-500">Cloudways Security Features <br> for WordPress & Laravel</h2>
+                                    <p class="mt-5 font-regular leading-[1.2] text-#000000 ">Photo by Sasun Bughdaryan on Unsplash<br>
+                                        Cyberattacks are becoming more sophisticated-<br>
+                                        ranging from brute-force logins and DDoS attacks to ...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide flex justify-center">
+                            <div class="flex h-[505px] w-full max-w-[508px] flex-shrink-0 flex-col gap-[13px] rounded-[36px] border border-black/50 bg-white px-[36px] py-[48px] shadow-xl shadow-slate-300/30">
+                                <div class="flex-1 overflow-hidden rounded-2xl">
+                                    <img src="/ef.png" alt="Blog post thumbnail" class="h-full w-full object-cover">
+                                </div>
+                                <div class="flex flex-col">
+                                   <h2 class="text-xl font-medium leading-[1.2] text-black-500">Cloudways Security Features <br> for WordPress & Laravel</h2>
+                                    <p class="mt-5 font-regular leading-[1.2] text-#000000 ">Photo by Sasun Bughdaryan on Unsplash<br>
+                                        Cyberattacks are becoming more sophisticated-<br>
+                                        ranging from brute-force logins and DDoS attacks to ...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="bg-white border border-gray-200 rounded-[36px] p-4 shadow-md flex flex-col w-full opacity-50">
-            <img src="/ef.png" alt="Security Lock" class="w-full h-auto rounded-xl mb-4">
-            <div>
-                <h2 class="text-lg font-medium text-gray-500 mb-2">
-                    Cloudways Security Features<br> for WordPress & Laravel
-                </h2>
-                <p class="text-gray-500 text-sm">
-                    Photo by Sasun Bughdaryan on Unsplash<br>
-                    Cyberattacks are becoming more sophisticated-<br>
-                    ranging from brute-force logins and DDoS attacks to ...               
-                 </p>
-            </div>
-        </div>
-
     </div>
 </section>
 
@@ -468,11 +801,11 @@
                 <a href="#" class="inline-flex items-center gap-x-3">
                     <img class="h-8 w-auto" src="/l2.png" alt="Mangcoding Logo">
                 </a>
-                <p class="mt-8 text-2xl font-semibold leading-relaxed text-slate-200 text-white">
+                <p class="mt-8 text-2xl font-semibold leading-relax text-white">
                     PT Anugrah Kreasi Digital. <br>
                     karang tengah, Cibadak - Sukabumi
                 </p>
-                <div class="mt-8 space-y-4 text-slate-300 text-white">
+                <div class="mt-8 space-y-4 text-slate text-white">
                     <p>hello@mangcoding.com</p>
                     <p class="flex items-center gap-x-3">
                         <img class="h-6 w-6" src="/tel.png" alt="Telepon">
@@ -484,20 +817,80 @@
                     </p>
                 </div>
             </div>
+
             <div class="lg:col-span-3 lg:col-start-10">
-                <nav x-data="{ activeLink: 'About' }">
+                <nav x-data="{ activeLink: null }">
                     <ul class="space-y-4 text-right text-3xl font-semibold text-slate-300">
-                        <li><div class="relative inline-block"><div x-show="activeLink === 'Home'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Home'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Home</span><span x-show="activeLink === 'Home'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
-                        <li><div class="relative inline-block"><div x-show="activeLink === 'About'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div><a href="#" @click.prevent="activeLink = 'About'" class="relative block transition-all duration-200 ease-in-out bg-emerald-400 text-white rounded-full px-6 py-3 inline-flex items-center gap-x-3 -translate-x-1 -translate-y-1"><span>About</span><span x-show="activeLink === 'About'" class="inline-block rounded-full bg-white p-1"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
-                        <li><div class="relative inline-block"><div x-show="activeLink === 'Service'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Service'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Service</span><span x-show="activeLink === 'Service'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
-                        <li><div class="relative inline-block"><div x-show="activeLink === 'Blog'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Blog'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Blog</span><span x-show="activeLink === 'Blog'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
-                        <li><div class="relative inline-block"><div x-show="activeLink === 'Work'" x-transition="" class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black" style="display: none;"></div><a href="#" @click.prevent="activeLink = 'Work'" class="relative block transition-all duration-200 ease-in-out hover:text-white"><span>Work</span><span x-show="activeLink === 'Work'" class="inline-block rounded-full bg-white p-1" style="display: none;"><svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path></svg></span></a></div></li>
+                        <li>
+                            <div class="relative inline-block">
+                                <div x-show="activeLink === 'Home'" x-transition class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div>
+                                <a href="#" @click.prevent="activeLink = 'Home'" :class="{'bg-emerald-400 text-white rounded-full px-6 py-3': activeLink === 'Home', 'hover:text-white': activeLink !== 'Home'}" class="relative transition-all duration-200 ease-in-out inline-flex items-center gap-x-3">
+                                    <span>Home</span>
+                                    <span x-show="activeLink === 'Home'" class="inline-block rounded-full bg-white p-1" x-transition>
+                                        <svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="relative inline-block">
+                                <div x-show="activeLink === 'About'" x-transition class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div>
+                                <a href="#" @click.prevent="activeLink = 'About'" :class="{'bg-emerald-400 text-white rounded-full px-6 py-3': activeLink === 'About', 'hover:text-white': activeLink !== 'About'}" class="relative transition-all duration-200 ease-in-out inline-flex items-center gap-x-3">
+                                    <span>About</span>
+                                    <span x-show="activeLink === 'About'" class="inline-block rounded-full bg-white p-1" x-transition>
+                                        <svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="relative inline-block">
+                                <div x-show="activeLink === 'Service'" x-transition class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div>
+                                <a href="#" @click.prevent="activeLink = 'Service'" :class="{'bg-emerald-400 text-white rounded-full px-6 py-3': activeLink === 'Service', 'hover:text-white': activeLink !== 'Service'}" class="relative transition-all duration-200 ease-in-out inline-flex items-center gap-x-3">
+                                    <span>Service</span>
+                                    <span x-show="activeLink === 'Service'" class="inline-block rounded-full bg-white p-1" x-transition>
+                                        <svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="relative inline-block">
+                                <div x-show="activeLink === 'Blog'" x-transition class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div>
+                                <a href="#" @click.prevent="activeLink = 'Blog'" :class="{'bg-emerald-400 text-white rounded-full px-6 py-3': activeLink === 'Blog', 'hover:text-white': activeLink !== 'Blog'}" class="relative transition-all duration-200 ease-in-out inline-flex items-center gap-x-3">
+                                    <span>Blog</span>
+                                    <span x-show="activeLink === 'Blog'" class="inline-block rounded-full bg-white p-1" x-transition>
+                                        <svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="relative inline-block">
+                                <div x-show="activeLink === 'Work'" x-transition class="absolute inset-0 translate-x-1 translate-y-1 rounded-full bg-black"></div>
+                                <a href="#" @click.prevent="activeLink = 'Work'" :class="{'bg-emerald-400 text-white rounded-full px-6 py-3': activeLink === 'Work', 'hover:text-white': activeLink !== 'Work'}" class="relative transition-all duration-200 ease-in-out inline-flex items-center gap-x-3">
+                                    <span>Work</span>
+                                    <span x-show="activeLink === 'Work'" class="inline-block rounded-full bg-white p-1" x-transition>
+                                        <svg class="h-5 w-5 text-emerald-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"></path>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
 
-        <!-- Garis -->
         <hr class="my-7 border-slate-700">
 
         <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
@@ -518,10 +911,97 @@
                     © 2022 Mangcoding. All rights reserved.
                 </p>
             </div>
-
         </div>
     </div>
 </footer>
-<script src="/src/main.js"></script>
+
+<script type="module">
+  import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
+
+const allCards = document.querySelectorAll('.card-item');
+
+    allCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Hapus kelas 'active' dari semua kartu lain
+            allCards.forEach(c => {
+                c.classList.remove('active');
+            });
+
+            // Tambahkan kelas 'active' pada kartu yang diklik
+            card.classList.add('active');
+
+            // Jalankan fungsi untuk memperbarui tampilan semua kartu
+            updateCardStyles();
+        });
+    });
+
+    // Fungsi untuk mengubah style berdasarkan kelas 'active'
+    function updateCardStyles() {
+        allCards.forEach(card => {
+            const content = card.querySelector('.card-content');
+            const title = content.querySelector('.card-title');
+            const text = content.querySelector('.card-text');
+
+            if (card.classList.contains('active')) {
+                // Terapkan style hijau untuk kartu yang aktif
+                content.classList.remove('bg-[#F5F7FA]');
+                content.classList.add('bg-[#34D399]');
+                title.classList.remove('text-[#001F22]');
+                title.classList.add('text-white');
+                text.classList.remove('text-[#00000099]');
+                text.classList.add('text-white');
+            } else {
+                // Kembalikan style ke warna default untuk kartu yang tidak aktif
+                content.classList.remove('bg-[#34D399]');
+                content.classList.add('bg-[#F5F7FA]');
+                title.classList.remove('text-white');
+                title.classList.add('text-[#001F22]');
+                text.classList.remove('text-white');
+                text.classList.add('text-[#00000099]');
+            }
+        });
+    }
+
+    // Panggil fungsi ini saat halaman dimuat, tanpa mengaktifkan kartu apapun secara default
+    updateCardStyles();
+const testimonialSwiper = new Swiper('.testimonial-slider', {
+     loop: true, 
+    
+    slidesPerView: 'auto', 
+    spaceBetween: 24, 
+    navigation: {
+      nextEl: '.testimonial-next-btn', 
+      prevEl: '.testimonial-prev-btn', 
+    },
+
+    pagination: {
+      el: '.testimonial-pagination', 
+      type: 'fraction',
+    },
+});
+
+const swiper = new Swiper('.blog-slider', {
+  loop: true,
+  grabCursor: true,
+  slidesPerView: 1.25,
+  spaceBetween: 16,
+
+  breakpoints: {
+    320: {
+      slidesPerView: 1.05,
+      spaceBetween: 12,
+    },
+    768: {
+      slidesPerView: 1.25,
+      spaceBetween: 16,
+    },
+    1024: {
+      slidesPerView: 1.5,
+      spaceBetween: 20,
+    }
+  }
+});
+
+</script>
 </body>
 </html> 
